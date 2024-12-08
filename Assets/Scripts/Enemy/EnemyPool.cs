@@ -4,13 +4,13 @@ namespace CosmicCuration.Enemy
 {
     public class EnemyPool
     {
-        private EnemyView enemyView;
+        private EnemyView enemyPrefab;
         private EnemyData enemyData;
         private List<PooledEnemy> pooledEnemies = new List<PooledEnemy>();
 
-        public EnemyPool(EnemyView enemyView, EnemyData enemyData)
+        public EnemyPool(EnemyView enemyPrefab, EnemyData enemyData)
         {
-            this.enemyView = enemyView;
+            this.enemyPrefab = enemyPrefab;
             this.enemyData = enemyData;
         }
 
@@ -18,30 +18,31 @@ namespace CosmicCuration.Enemy
         {
             if (pooledEnemies.Count > 0)
             {
-                PooledEnemy pooledEnemy = pooledEnemies.Find(item => !item.isUsed);
-
-                if(pooledEnemy != null)
+                PooledEnemy enemy = pooledEnemies.Find(item => !item.isUsed);
+                if (enemy != null)
                 {
-                    pooledEnemy.isUsed = true;
-                    return pooledEnemy.Enemy;
+                    enemy.isUsed = true;
+                    return enemy.Enemy;
                 }
             }
             return CreateNewPooledEnemy();
         }
 
-        public void ReturnToEnemyPool(EnemyController returnedEnemy)
-        {
-            PooledEnemy pooledEnemy = pooledEnemies.Find(item => item.Enemy.Equals(returnedEnemy));
-            pooledEnemy.isUsed = false;
-        }
-
         private EnemyController CreateNewPooledEnemy()
         {
-            PooledEnemy pooledEnemy = new PooledEnemy();
-            pooledEnemy.Enemy = new EnemyController(enemyView, enemyData);
-            pooledEnemy.isUsed = true;
-            pooledEnemies.Add(pooledEnemy);
-            return pooledEnemy.Enemy;
+            PooledEnemy newEnemy = new PooledEnemy();
+            newEnemy.Enemy = CreateEnemy();
+            newEnemy.isUsed = true;
+            pooledEnemies.Add(newEnemy);
+            return newEnemy.Enemy;
+        }
+
+        private EnemyController CreateEnemy() => new EnemyController(enemyPrefab, enemyData);
+
+        public void ReturnEnemy(EnemyController enemy)
+        {
+            PooledEnemy pooledEnemy = pooledEnemies.Find(e => e.Enemy.Equals(enemy));
+            pooledEnemy.isUsed = false;
         }
 
         public class PooledEnemy
@@ -50,5 +51,4 @@ namespace CosmicCuration.Enemy
             public bool isUsed;
         }
     }
-
 }

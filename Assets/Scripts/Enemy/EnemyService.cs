@@ -7,21 +7,21 @@ namespace CosmicCuration.Enemy
     public class EnemyService
     {
         #region Dependencies
-        private EnemyPool enemyPool;
         private EnemyScriptableObject enemyScriptableObject;
+        private EnemyPool enemyPool;
         #endregion
 
         #region Variables
         private bool isSpawning;
         private float currentSpawnRate;
-        private float spawnTimer;
+        private float spawnTimer; 
         #endregion
 
         #region Initialization
         public EnemyService(EnemyView enemyPrefab, EnemyScriptableObject enemyScriptableObject)
         {
-            enemyPool = new EnemyPool(enemyPrefab, enemyScriptableObject.enemyData);
             this.enemyScriptableObject = enemyScriptableObject;
+            enemyPool = new EnemyPool(enemyPrefab, enemyScriptableObject.enemyData);
             InitializeVariables();
         }
 
@@ -30,7 +30,7 @@ namespace CosmicCuration.Enemy
             isSpawning = true;
             currentSpawnRate = enemyScriptableObject.initialSpawnRate;
             spawnTimer = currentSpawnRate;
-        }
+        } 
         #endregion
 
         public void Update()
@@ -94,7 +94,7 @@ namespace CosmicCuration.Enemy
             }
 
             return spawnPosition;
-        }
+        } 
         #endregion
 
         private void IncreaseDifficulty()
@@ -105,11 +105,11 @@ namespace CosmicCuration.Enemy
                 currentSpawnRate = enemyScriptableObject.minimumSpawnRate;
         }
 
-        public void ReturnToEnemyPool(EnemyController returnedEnemy) => enemyPool.ReturnToEnemyPool(returnedEnemy);
-
         private void ResetSpawnTimer() => spawnTimer = currentSpawnRate;
 
         public void SetEnemySpawning(bool setActive) => isSpawning = setActive;
+
+        public void ReturnEnemyToPool(EnemyController enemyToReturn) => enemyPool.ReturnEnemy(enemyToReturn);
     }
 
     public enum EnemyOrientation
@@ -118,5 +118,5 @@ namespace CosmicCuration.Enemy
         Down,
         Left,
         Right
-    }
+    } 
 }

@@ -23,5 +23,5 @@ MonoBehaviour:
     damageToInflict: 1
     scoreToGrant: 5
     movementDuration: 5
-    rotationSpeed: 50
+    rotationSpeed: 200
     rotationTolerance: 2
