@@ -1,7 +1,7 @@
-using UnityEngine;
 using CosmicCuration.Audio;
-using CosmicCuration.VFX;
 using CosmicCuration.Player;
+using CosmicCuration.VFX;
+using UnityEngine;
 
 namespace CosmicCuration.Enemy
 {
@@ -27,9 +27,10 @@ namespace CosmicCuration.Enemy
 
         public void Configure(Vector3 positionToSet, EnemyOrientation enemyOrientation)
         {
+            enemyView.gameObject.SetActive(true);
             enemyView.transform.position = positionToSet;
             SetEnemyOrientation(enemyOrientation);
-            
+
             currentEnemyState = EnemyState.Moving;
             currentHealth = enemyData.maxHealth;
             speed = Random.Range(enemyData.minimumSpeed, enemyData.maximumSpeed);
@@ -54,7 +55,7 @@ namespace CosmicCuration.Enemy
                     enemyView.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
                     break;
             }
-        } 
+        }
 
         public void TakeDamage(int damageToTake)
         {
@@ -65,7 +66,7 @@ namespace CosmicCuration.Enemy
 
         public void UpdateMotion()
         {
-            if(currentEnemyState == EnemyState.Moving)
+            if (currentEnemyState == EnemyState.Moving)
             {
                 enemyView.transform.position += enemyView.transform.up * Time.deltaTime * speed;
                 movementTimer -= Time.deltaTime;
@@ -76,7 +77,7 @@ namespace CosmicCuration.Enemy
                     movementTimer = enemyData.movementDuration;
                 }
             }
-            else if(currentEnemyState == EnemyState.Rotating)
+            else if (currentEnemyState == EnemyState.Rotating)
             {
                 enemyView.transform.rotation = Quaternion.RotateTowards(enemyView.transform.rotation, targetRotation, enemyData.rotationSpeed * Time.deltaTime);
 
@@ -106,13 +107,14 @@ namespace CosmicCuration.Enemy
             GameService.Instance.GetUIService().IncrementScore(enemyData.scoreToGrant);
             GameService.Instance.GetSoundService().PlaySoundEffects(SoundType.EnemyDeath);
             GameService.Instance.GetVFXService().PlayVFXAtPosition(VFXType.EnemyExplosion, enemyView.transform.position);
-            Object.Destroy(enemyView.gameObject);
+            GameService.Instance.GetEnemyService().ReturnToEnemyPool(this);
+            enemyView.gameObject.SetActive(false);
         }
 
         private enum EnemyState
         {
-            Moving, 
+            Moving,
             Rotating
         }
-    } 
+    }
 }
