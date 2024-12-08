@@ -7,20 +7,20 @@ namespace CosmicCuration.Enemy
     public class EnemyService
     {
         #region Dependencies
-        private EnemyView enemyPrefab;
+        private EnemyPool enemyPool;
         private EnemyScriptableObject enemyScriptableObject;
         #endregion
 
         #region Variables
         private bool isSpawning;
         private float currentSpawnRate;
-        private float spawnTimer; 
+        private float spawnTimer;
         #endregion
 
         #region Initialization
         public EnemyService(EnemyView enemyPrefab, EnemyScriptableObject enemyScriptableObject)
         {
-            this.enemyPrefab = enemyPrefab;
+            enemyPool = new EnemyPool(enemyPrefab, enemyScriptableObject.enemyData);
             this.enemyScriptableObject = enemyScriptableObject;
             InitializeVariables();
         }
@@ -30,7 +30,7 @@ namespace CosmicCuration.Enemy
             isSpawning = true;
             currentSpawnRate = enemyScriptableObject.initialSpawnRate;
             spawnTimer = currentSpawnRate;
-        } 
+        }
         #endregion
 
         public void Update()
@@ -59,7 +59,7 @@ namespace CosmicCuration.Enemy
 
         private void SpawnEnemyAtPosition(Vector2 spawnPosition, EnemyOrientation enemyOrientation)
         {
-            EnemyController spawnedEnemy = new EnemyController(enemyPrefab, enemyScriptableObject.enemyData);
+            EnemyController spawnedEnemy = enemyPool.GetEnemy();
             spawnedEnemy.Configure(spawnPosition, enemyOrientation);
         }
 
@@ -94,7 +94,7 @@ namespace CosmicCuration.Enemy
             }
 
             return spawnPosition;
-        } 
+        }
         #endregion
 
         private void IncreaseDifficulty()
@@ -104,6 +104,8 @@ namespace CosmicCuration.Enemy
             else
                 currentSpawnRate = enemyScriptableObject.minimumSpawnRate;
         }
+
+        public void ReturnToEnemyPool(EnemyController returnedEnemy) => enemyPool.ReturnToEnemyPool(returnedEnemy);
 
         private void ResetSpawnTimer() => spawnTimer = currentSpawnRate;
 
@@ -116,5 +118,5 @@ namespace CosmicCuration.Enemy
         Down,
         Left,
         Right
-    } 
+    }
 }
