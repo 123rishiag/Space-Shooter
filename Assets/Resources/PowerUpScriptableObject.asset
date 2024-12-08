@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d27738b4658ca4b83b5968c642152f, type: 3}
   m_Name: PowerUpScriptableObject
   m_EditorClassIdentifier: 
-  spawnRate: 5
+  spawnRate: 1
   powerUpData:
   - powerUpType: 0
     powerUpPrefab: {fileID: 5766436223295751745, guid: 302e3a9b8c981ad4582e1fd56b9dc812,
