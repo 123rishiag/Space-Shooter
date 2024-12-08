@@ -47,6 +47,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2590e3f5e792cb4fba863a1bf28940a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particleSystemMap:
+  - type: 0
+    particleSystem: {fileID: 3109020216133020329, guid: fc1917a33f075db42ac4799e0890012f,
+      type: 3}
+  - type: 1
+    particleSystem: {fileID: 2705997964611865120, guid: 16f7b7a0410644443a9aa76baaf2ff9e,
+      type: 3}
+  - type: 2
+    particleSystem: {fileID: 4630746191812930549, guid: 730e73862c9342c49bf899a7875ce48f,
+      type: 3}
 --- !u!1 &4026600655981126579
 GameObject:
   m_ObjectHideFlags: 0
