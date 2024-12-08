@@ -51,6 +51,8 @@ MonoBehaviour:
     type: 3}
   enemyPrefab: {fileID: 427177731486789180, guid: 6ec805b0fd2b5fd42bd04a26e3c6754b,
     type: 3}
+  vfxPrefab: {fileID: 2674352075565639642, guid: c68733eb7fedaae4299ec0fea2f96c42,
+    type: 3}
   playerScriptableObject: {fileID: 11400000, guid: 27ad248a2a50333478d9ee1759b984d4,
     type: 2}
   playerBulletScriptableObject: {fileID: 11400000, guid: 5fc7909e8b873be46aa3f538af315af5,
@@ -60,8 +62,6 @@ MonoBehaviour:
   powerUpScriptableObject: {fileID: 11400000, guid: a9a56db10ea2bfe41abb76c4e9c41d27,
     type: 2}
   soundScriptableObject: {fileID: 11400000, guid: 40f32d42dad9d554a8fc89b215c5309e,
-    type: 2}
-  vfxScriptableObject: {fileID: 11400000, guid: 4a95c1a59f4a1704b8f38102cf86ba49,
     type: 2}
   audioEffectSource: {fileID: 0}
   backgroundMusicSource: {fileID: 0}

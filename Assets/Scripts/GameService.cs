@@ -29,7 +29,7 @@ public class GameService : GenericMonoSingleton<GameService>
     [SerializeField] private PlayerView playerPrefab;
     [SerializeField] private BulletView playerBulletPrefab;
     [SerializeField] private EnemyView enemyPrefab;
-    [SerializeField] private VFXView vfxView;
+    [SerializeField] private VFXView vfxPrefab;
     #endregion
 
     #region Scriptable Objects
@@ -52,7 +52,7 @@ public class GameService : GenericMonoSingleton<GameService>
         playerService = new PlayerService(playerPrefab, playerScriptableObject, playerBulletPrefab, playerBulletScriptableObject);
         powerUpService = new PowerUpService(powerUpScriptableObject);
         enemyService = new EnemyService(enemyPrefab, enemyScriptableObject);
-        vfxService = new VFXService(vfxView);
+        vfxService = new VFXService(vfxPrefab);
     }
 
     private void Update()

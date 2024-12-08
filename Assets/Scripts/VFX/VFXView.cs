@@ -7,6 +7,7 @@ namespace CosmicCuration.VFX
     public class VFXView : MonoBehaviour
     {
         private VFXController controller;
+
         [SerializeField] private List<VFXData> particleSystemMap;
         private ParticleSystem currentPlayingVFX;
 
@@ -15,7 +16,8 @@ namespace CosmicCuration.VFX
         public void ConfigureAndPlay(VFXType type, Vector2 positionToSet)
         {
             gameObject.SetActive(true);
-            transform.position = positionToSet;
+            gameObject.transform.position = positionToSet;
+
             foreach (VFXData item in particleSystemMap)
             {
                 if (item.type == type)
@@ -41,6 +43,7 @@ namespace CosmicCuration.VFX
                 }
             }
         }
+
     }
 
     [Serializable]

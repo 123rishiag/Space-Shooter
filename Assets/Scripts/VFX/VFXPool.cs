@@ -6,10 +6,7 @@ namespace CosmicCuration.VFX
     {
         private VFXView vfxPrefab;
 
-        public VFXPool(VFXView vfxPrefab)
-        {
-            this.vfxPrefab = vfxPrefab;
-        }
+        public VFXPool(VFXView vfxPrefab) => this.vfxPrefab = vfxPrefab;
 
         public VFXController GetVFX() => GetItem<VFXController>();
 

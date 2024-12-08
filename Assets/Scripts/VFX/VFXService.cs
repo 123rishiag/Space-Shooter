@@ -14,6 +14,6 @@ namespace CosmicCuration.VFX
             vfxToPlay.Configure(type, spawnPosition);
         }
 
-        public void ReturnVFXToPool(VFXController vfxToReturn) => vfxPool.ReturnItem(vfxToReturn);
-    }
+        public void ReturnVFXToPool(VFXController vfxToReturn) => vfxPool.ReturnItem(vfxToReturn); 
+    } 
 }
