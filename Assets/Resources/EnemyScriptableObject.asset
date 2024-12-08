@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnDistance: 2
   initialSpawnRate: 3
-  minimumSpawnRate: 0.5
+  minimumSpawnRate: 10
   difficultyDelta: 0.05
   enemyData:
     maxHealth: 3
