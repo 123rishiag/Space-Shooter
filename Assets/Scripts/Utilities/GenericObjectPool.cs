@@ -3,19 +3,23 @@ using System.Collections.Generic;
 
 namespace CosmicCuration.Utilities
 {
+    /// <summary>
+    /// This is a Generic Object Pool Class with basic functionality, which can be inherited to implement object pools for any type of objects.
+    /// </summary>
+    /// <typeparam object Type to be pooled = "T"></typeparam>
     public class GenericObjectPool<T> where T : class
     {
-        private List<PooledItem<T>> pooledItems = new List<PooledItem<T>>();
+        public List<PooledItem<T>> pooledItems = new List<PooledItem<T>>();
 
-        protected T GetItem()
+        public virtual T GetItem()
         {
             if (pooledItems.Count > 0)
             {
-                PooledItem<T> pooledItem = pooledItems.Find(item => !item.isUsed);
-                if (pooledItem != null)
+                PooledItem<T> item = pooledItems.Find(item => !item.isUsed);
+                if (item != null)
                 {
-                    pooledItem.isUsed = true;
-                    return pooledItem.Item;
+                    item.isUsed = true;
+                    return item.Item;
                 }
             }
             return CreateNewPooledItem();
@@ -32,12 +36,12 @@ namespace CosmicCuration.Utilities
 
         protected virtual T CreateItem()
         {
-            throw new NotImplementedException("Child class don't have implementation of CreateItem()");
+            throw new NotImplementedException("CreateItem() method not implemented in derived class");
         }
 
-        public void ReturnItem(T retunedItem)
+        public virtual void ReturnItem(T item)
         {
-            PooledItem<T> pooledItem = pooledItems.Find(item => item.Item.Equals(retunedItem));
+            PooledItem<T> pooledItem = pooledItems.Find(i => i.Item.Equals(item));
             pooledItem.isUsed = false;
         }
 
