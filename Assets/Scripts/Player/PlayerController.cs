@@ -1,8 +1,8 @@
-using System.Threading.Tasks;
-using UnityEngine;
-using CosmicCuration.Bullets;
 using CosmicCuration.Audio;
+using CosmicCuration.Bullets;
 using CosmicCuration.VFX;
+using System.Collections;
+using UnityEngine;
 
 namespace CosmicCuration.Player
 {
@@ -72,14 +72,17 @@ namespace CosmicCuration.Player
         private void HandleShooting()
         {
             if (Input.GetKeyDown(KeyCode.Space))
-                FireWeapon();
+                playerView.StartCoroutine(FireWeapon());
             if (Input.GetKeyUp(KeyCode.Space))
                 currentShootingState = ShootingState.NotFiring;
         }
 
         // Firing Weapons:
-        private async void FireWeapon()
+        private IEnumerator FireWeapon()
         {
+            if (currentShootingState == ShootingState.Firing)
+                yield break;
+
             currentShootingState = ShootingState.Firing;
             while (currentShootingState == ShootingState.Firing)
             {
@@ -93,16 +96,16 @@ namespace CosmicCuration.Player
                         FireBulletAtPosition(playerView.turretTransform2);
                         break;
                 }
-                await Task.Delay(Mathf.RoundToInt(currentRateOfFire * 1000));
+                yield return new WaitForSeconds(currentRateOfFire);
             }
         }
 
         private void FireBulletAtPosition(Transform fireLocation)
-        { 
+        {
             BulletController bulletToFire = bulletPool.GetBullet();
             bulletToFire.ConfigureBullet(fireLocation);
             GameService.Instance.GetSoundService().PlaySoundEffects(SoundType.PlayerBullet);
-        } 
+        }
 
         // PowerUp Logic:
         public void SetShieldState(ShieldState shieldStateToSet) => currentShieldState = shieldStateToSet;
@@ -120,23 +123,22 @@ namespace CosmicCuration.Player
             }
 
             if (currentHealth <= 0)
-                PlayerDeath();
+                playerView.StartCoroutine(PlayerDeath());
         }
 
-        private async void PlayerDeath()
+        private IEnumerator PlayerDeath()
         {
-            Object.Destroy(playerView.gameObject);
-            
             GameService.Instance.GetVFXService().PlayVFXAtPosition(VFXType.PlayerExplosion, playerView.transform.position);
             GameService.Instance.GetSoundService().PlaySoundEffects(SoundType.PlayerDeath);
 
             currentShootingState = ShootingState.NotFiring;
             GameService.Instance.GetEnemyService().SetEnemySpawning(false);
             GameService.Instance.GetPowerUpService().SetPowerUpSpawning(false);
-            
+
             // Wait for Player Ship Destruction.
-            await Task.Delay(playerScriptableObject.deathDelay * 1000);
+            yield return new WaitForSeconds(playerScriptableObject.deathDelay);
             GameService.Instance.GetUIService().EnableGameOverUI();
+            Object.Destroy(playerView.gameObject);
         }
 
         public Vector3 GetPlayerPosition() => playerView != null ? playerView.transform.position : default;
