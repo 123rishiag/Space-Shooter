@@ -1,6 +1,6 @@
-using UnityEngine;
 using CosmicCuration.Player;
-using System.Threading.Tasks;
+using System.Collections;
+using UnityEngine;
 
 namespace CosmicCuration.PowerUps
 {
@@ -24,11 +24,11 @@ namespace CosmicCuration.PowerUps
             powerUpView.gameObject.SetActive(true);
         }
 
-        public async void StartTimer()
+        public IEnumerator StartTimer()
         {
             if (isActive)
             {
-                await Task.Delay(Mathf.RoundToInt(activeDuration * 1000));
+                yield return new WaitForSeconds(activeDuration);
                 Deactivate();
             }
         }
@@ -42,8 +42,8 @@ namespace CosmicCuration.PowerUps
         public virtual void Activate()
         {
             isActive = true;
+            powerUpView.StartCoroutine(StartTimer());
             powerUpView.gameObject.SetActive(false);
-            StartTimer();
         }
 
         public virtual void Deactivate()
@@ -51,5 +51,5 @@ namespace CosmicCuration.PowerUps
             isActive = false;
             GameService.Instance.GetPowerUpService().ReturnPowerUpToPool(this);
         }
-    } 
+    }
 }

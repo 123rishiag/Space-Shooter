@@ -16,4 +16,4 @@ MonoBehaviour:
   movementSpeed: 5
   defaultFireRate: 1
   rapidFireRate: 0.2
-  deathDelay: 2
+  deathDelay: 0.5

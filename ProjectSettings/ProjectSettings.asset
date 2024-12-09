@@ -806,11 +806,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: a7cc3406-70a0-4084-8f54-be1926e57cd7
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Space Shooter FREE
-  organizationId: 
+  projectName: Space-Shooter 2024-12-09_14-30-18
+  organizationId: unity_jt3ua84xpgsblq
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 1
   playerDataPath: 
