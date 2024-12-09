@@ -30,7 +30,6 @@ An endless arcade-style game where players pilot a spaceship to battle an unendi
 ### **GameService**
 The central manager that coordinates the game flow and facilitates seamless communication between all other services.
 
----
 
 ### **EnemyService**
 Manages all enemy-related functionality, including spawning enemies, handling their behavior.
@@ -39,7 +38,6 @@ Manages all enemy-related functionality, including spawning enemies, handling th
 - **EnemyScriptableObject**: Defines enemy attributes, such as speed, health, and damage.
 - **EnemyPool**: Implements object pooling to manage enemy reuse and improve performance.
 
----
 
 ### **PlayerService**
 Manages the player's Controller and Bullet Pool Creation.
@@ -47,7 +45,6 @@ Manages the player's Controller and Bullet Pool Creation.
 - **PlayerView**: Displays the player's spaceship visually.
 - **PlayerScriptableObject**: Configures the player's attributes, such as health, movement speed, and fire rate etc.
 
----
 
 ### **PowerUpService**
 Handles the spawning, functionality of power-ups in the game.
@@ -61,7 +58,6 @@ Handles the spawning, functionality of power-ups in the game.
 - **PowerUpPool**: Implements object pooling for power-ups to optimize spawning and reuse.
 - **IPowerUp**: Interface for power-up behavior, allowing flexible implementation of unique effects for different power-ups.
 
----
 
 ### **BulletFiles**
 No BulletService as all bullet launches happen by PlayerService.
@@ -71,7 +67,6 @@ No BulletService as all bullet launches happen by PlayerService.
 - **BulletPool**: Implements object pooling to optimize bullet reuse.
 - **IBullet**: Interface for standardizing bullet-related functionality.
 
----
 
 ### **SoundService**
 Responsible for managing sound effects and background music in the game.
@@ -79,7 +74,6 @@ Responsible for managing sound effects and background music in the game.
 - **SoundType**: Enum for categorizing sound effects (e.g., background music, explosions, power-ups).
 - **Sounds**: Holds the Structure to have a sound type and its respective audio file.
 
----
 
 ### **VFXService**
 Manages all visual effects in the game, such as explosions and bullet trails, to enhance the player experience.
@@ -88,14 +82,12 @@ Manages all visual effects in the game, such as explosions and bullet trails, to
 - **VFXType**: Enum categorizing various visual effect types (e.g., Explosion, Spark, Trail).
 - **VFXPool**: Implements object pooling for visual effects to improve performance.
 
----
 
 ### **Utilities**
 - **GenericMonoSingleton**: Provides a reusable singleton implementation for global services, such as GameService.
 - **GenericObjectPool**: Implements a flexible pooling system that supports object subtypes, used for bullets, enemies, power-ups, and effects.
 - **ScreenWrapperView**: Ensures objects exiting one side of the screen reappear on the opposite side, maintaining seamless gameplay.
 
----
 
 ## __Other Interfaces__
 
