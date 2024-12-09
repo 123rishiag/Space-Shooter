@@ -42,7 +42,7 @@ namespace CosmicCuration.PowerUps
         public virtual void Activate()
         {
             isActive = true;
-            powerUpView.StartCoroutine(StartTimer());
+            GameService.Instance.StartGameCoroutine(StartTimer());
             powerUpView.gameObject.SetActive(false);
         }
 
