@@ -27,11 +27,11 @@ An endless arcade-style game where players pilot a spaceship to battle an unendi
 
 ## __Project Structure__
 
-### **GameService**
+### **1. GameService**
 The central manager that coordinates the game flow and facilitates seamless communication between all other services.
 
 
-### **EnemyService**
+### **2. EnemyService**
 Manages all enemy-related functionality, including spawning enemies, handling their behavior.
 - **EnemyController**: Controls individual enemy behaviors, such as movement and collision handling.
 - **EnemyView**: Displays the visual representation of enemies.
@@ -39,14 +39,14 @@ Manages all enemy-related functionality, including spawning enemies, handling th
 - **EnemyPool**: Implements object pooling to manage enemy reuse and improve performance.
 
 
-### **PlayerService**
+### **3. PlayerService**
 Manages the player's Controller and Bullet Pool Creation.
 - **PlayerController**: Handles player actions like movement, shooting, and collision detection.
 - **PlayerView**: Displays the player's spaceship visually.
 - **PlayerScriptableObject**: Configures the player's attributes, such as health, movement speed, and fire rate etc.
 
 
-### **PowerUpService**
+### **4. PowerUpService**
 Handles the spawning, functionality of power-ups in the game.
 - **PowerUpController**: Manages the behavior and activation of individual power-ups.
   - **DoubleTurretController**: Enables dual weapon firing for a limited time.
@@ -59,7 +59,7 @@ Handles the spawning, functionality of power-ups in the game.
 - **IPowerUp**: Interface for power-up behavior, allowing flexible implementation of unique effects for different power-ups.
 
 
-### **BulletFiles**
+### **5. BulletFiles**
 No BulletService as all bullet launches happen by PlayerService.
 - **BulletController**: Controls individual bullet behavior, such as movement and collision detection.
 - **BulletView**: Displays the visual representation of bullets during gameplay.
@@ -68,14 +68,14 @@ No BulletService as all bullet launches happen by PlayerService.
 - **IBullet**: Interface for standardizing bullet-related functionality.
 
 
-### **SoundService**
+### **6. SoundService**
 Responsible for managing sound effects and background music in the game.
 - **SoundScriptableObject**: Stores all the sounds type and their respective audio file.
 - **SoundType**: Enum for categorizing sound effects (e.g., background music, explosions, power-ups).
 - **Sounds**: Holds the Structure to have a sound type and its respective audio file.
 
 
-### **VFXService**
+### **7. VFXService**
 Manages all visual effects in the game, such as explosions and bullet trails, to enhance the player experience.
 - **VFXController**: Controls the behavior and triggering of visual effects.
 - **VFXView**: Displays visual effects during gameplay events and holds particle system for all VFX Type.
@@ -83,13 +83,18 @@ Manages all visual effects in the game, such as explosions and bullet trails, to
 - **VFXPool**: Implements object pooling for visual effects to improve performance.
 
 
-### **Utilities**
+### **8. UIFiles**
+UI Files manages display of UI Elements on screen.
+- **UIView**: Handles the rendering and interaction of UI elements, such as score and health.
+
+
+### **9. Utilities**
 - **GenericMonoSingleton**: Provides a reusable singleton implementation for global services, such as GameService.
 - **GenericObjectPool**: Implements a flexible pooling system that supports object subtypes, used for bullets, enemies, power-ups, and effects.
 - **ScreenWrapperView**: Ensures objects exiting one side of the screen reappear on the opposite side, maintaining seamless gameplay.
 
 
-## __Other Interfaces__
+### **10. Other Interfaces**
 
 - **IDamageable**: Defines the contract for objects that can take damage, ensuring consistent implementation (e.g., for enemies and the player).
 
