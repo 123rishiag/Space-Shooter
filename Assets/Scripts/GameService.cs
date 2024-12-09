@@ -8,7 +8,8 @@ using CosmicCuration.VFX;
 using CosmicCuration.Player;
 using CosmicCuration.UI;
 using CosmicCuration.Utilities;
-using CosmicCuration.PowerUps; 
+using CosmicCuration.PowerUps;
+using System.Collections;
 #endregion
 
 
@@ -59,6 +60,11 @@ public class GameService : GenericMonoSingleton<GameService>
     {
         powerUpService?.Update();
         enemyService?.Update();
+    }
+
+    public void StartGameCoroutine(IEnumerator _coroutine)
+    {
+        StartCoroutine(_coroutine);
     }
 
     #region Getters

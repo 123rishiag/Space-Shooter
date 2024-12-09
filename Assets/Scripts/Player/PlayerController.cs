@@ -72,7 +72,7 @@ namespace CosmicCuration.Player
         private void HandleShooting()
         {
             if (Input.GetKeyDown(KeyCode.Space))
-                playerView.StartCoroutine(FireWeapon());
+                GameService.Instance.StartGameCoroutine(FireWeapon());
             if (Input.GetKeyUp(KeyCode.Space))
                 currentShootingState = ShootingState.NotFiring;
         }
@@ -123,11 +123,12 @@ namespace CosmicCuration.Player
             }
 
             if (currentHealth <= 0)
-                playerView.StartCoroutine(PlayerDeath());
+                GameService.Instance.StartGameCoroutine(PlayerDeath());
         }
 
         private IEnumerator PlayerDeath()
         {
+            Object.Destroy(playerView.gameObject);
             GameService.Instance.GetVFXService().PlayVFXAtPosition(VFXType.PlayerExplosion, playerView.transform.position);
             GameService.Instance.GetSoundService().PlaySoundEffects(SoundType.PlayerDeath);
 
@@ -138,7 +139,6 @@ namespace CosmicCuration.Player
             // Wait for Player Ship Destruction.
             yield return new WaitForSeconds(playerScriptableObject.deathDelay);
             GameService.Instance.GetUIService().EnableGameOverUI();
-            Object.Destroy(playerView.gameObject);
         }
 
         public Vector3 GetPlayerPosition() => playerView != null ? playerView.transform.position : default;
