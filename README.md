@@ -1,6 +1,7 @@
 # Space Shooter
 
-An endless arcade-style game where players pilot a spaceship to battle an unending stream of enemies, collect power-ups, and aim for the highest score. The game emphasizes performance optimization and modular design, featuring a generic object pooling system that supports subtypes for efficient resource management.
+An endless arcade-style game where players pilot a spaceship to battle an unending stream of enemies, collect power-ups, and aim for the highest score. 
+The game emphasizes performance optimization and modular design, featuring a generic object pooling system that supports subtypes for efficient resource management.
 
 ---
 
@@ -8,12 +9,13 @@ An endless arcade-style game where players pilot a spaceship to battle an unendi
 
 - **Spaceship Mechanics**: Intuitive controls for seamless movement and shooting, enabling an immersive gameplay experience.
 - **Endless Gameplay**: Enemies spawn continuously, challenging players to survive as long as possible and achieve a high score.
-- **Scoring System**: Tracks the player’s score based on the number of enemies destroyed and power-ups collected.
+- **Scoring System**: Tracks the player’s score based on the number of enemies destroyed.
 - **Power-ups**:
   - **Shield**: Grants temporary protection against collisions and enemy attacks.
   - **Rapid Fire**: Increases the firing speed of the spaceship's weapons.
   - **Double Turret**: Two bullets gets fired parallely instead of one.
-- **Generic Object Pooling**: Implements a reusable pooling system that supports subtypes, applied across bullets, explosions, enemies, and power-ups for optimized performance.
+- **Generic Object Pooling**: Implements a reusable pooling system that supports subtypes, applied across bullets, explosions, enemies, and power-ups for 
+optimized performance.
 
 ---
 
